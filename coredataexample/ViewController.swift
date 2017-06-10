@@ -9,17 +9,60 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var data = [User]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
+        insertData()
+        
+         fetchData()
+    
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func insertData()
+    {
+        let userone = User(context: context)
+        
+        userone.name = "vijay"
+        userone.age = 25
+        
+        
+        
+        let usertwo = User(context: context )
+        
+        usertwo.name = "ajay"
+        usertwo.age = 25
+    
+    
+    
     }
-
-
+    
+    
+    func fetchData()
+    {
+    
+        do
+            {
+                data = try context.fetch(User.fetchRequest())
+                for each in data
+                {
+                    
+                    print("name : \(each.name!) \n age :\(each.age) \n")
+                  }
+    
+    
+                }
+  
+           catch
+            {
+   
+    
+    
+             }
+        }
 }
 
